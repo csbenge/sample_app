@@ -35,6 +35,7 @@ en:
   hdr_home:     "Home"
   hdr_help:     "Help"
   hdr_login:    "Login"
+  hdr_logout:   "Logout"
   ftr_about:    "About"
   ftr_contact:  "Contact"
   ftr_help:     "Help"

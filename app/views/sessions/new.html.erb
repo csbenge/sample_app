@@ -1,27 +1,42 @@
 <% provide(:title, "Login") %>
 
+ <% unless notice.nil? %>
+  <div class="callout success" data-closable>
+    <p id="notice"><b><%= notice %></b></p>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="callout warning" data-closable="slide-out-right">
+    <p id="alert"><b><%= flash[:alert] %></b></p>
+  </div>
+<% end %>
+
 <h1><%= yield(:title) %></h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>Remember me on this computer</span>
-      </div>
+<div class="flex-column justify-content-center align-items-center">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-6 col-md-offset-3">
+     
+      <%= form_for(:session, url: login_path) do |f| %>
+    
+        <div class="form-group">
+          <strong><%= f.label :email %></strong>
+          <%= f.email_field :email, class: 'form-control' %><br>
+        </div>
+        <div class="form-group">
+           <strong><%= f.label :password %></strong>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>Remember me on this computer</span><br>
+        </div>
+        <% end %>
+       <br> <%= f.submit "Log in", class: "btn btn-primary" %>
       <% end %>
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
   </div>
 </div>

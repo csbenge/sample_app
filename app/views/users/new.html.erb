@@ -1,32 +1,50 @@
 <% provide(:title, 'Sign Up') %>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@user.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1><%= t('sign_up') %></h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
-    <%= render 'shared/messages' %>
+<div class="flex-column justify-content-center align-items-center">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@user) do |f| %>
+        <% @user.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+  
       <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <strong><%= f.label :name %></strong>
+        <%= f.text_field :name %><br><br>
       </div>
 
       <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email %>
+        <strong><%= f.label :email %></strong>
+        <%= f.email_field :email %><br><br>
       </div>
 
       <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+        <strong><%= f.label :password %></strong>
+        <%= f.password_field :password %><br><br>
       </div>
 
       <div class="form-group">
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
+        <strong><%= f.label :password_confirmation, "Confirmation" %></strong>
+        <%= f.password_field :password_confirmation %><br><br>
       </div>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
+    </div>
   </div>
 </div>
