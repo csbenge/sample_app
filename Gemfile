@@ -41,6 +41,8 @@ gem "bcrypt", "~> 3.1.7"
 
 # Use to create "fake" users
 gem 'faker'
+
+# Use to paginate lists
 gem 'will_paginate-bootstrap-style'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
