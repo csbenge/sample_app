@@ -1,0 +1,28 @@
+<% provide(:title, "Forgot password") %>
+
+<% unless notice.nil? %>
+  <div class="callout success" data-closable>
+    <p id="notice"><b><%= notice %></b></p>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="callout warning" data-closable="slide-out-right">
+    <p id="alert"><b><%= flash[:alert] %></b></p>
+  </div>
+<% end %>
+
+<h1><%= yield(:title) %></h1>
+
+<div class="flex-column justify-content-center align-items-center">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-6 col-md-offset-3">
+   
+      <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+        <strong><%= f.label :email %></strong>
+        <%= f.email_field :email, class: 'form-control' %>
+        <br>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
